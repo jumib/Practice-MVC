@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Board List</title>
+</head>
+<body>
+<h2>Board List</h2>
+<!--href는 링크를 건다는 뜻-->
+<a href="board/register.html" th:href="@{getRegister}">
+    Write New Contents
+</a>
+<table border="1">
+    <tr>
+        <th align="center" width="80">No</th>
+        <th align="center" width="80">Title</th>
+        <th align="center" width="80">Writer</th>
+        <th align="center" width="80">Regdate</th>
+    </tr>
+    <tr th:if="${#lists.isEmpty(list)}">
+        <td colspan="4">
+            List is Empty
+    </tr>
+    <!--foreach(A :B)와 같음-->
+    <tr th:each="board: ${list}">
+        <td align="center">
+            <a th:text="${board.boardNo}">${board.boardNo}</a>
+        </td>
+        <td align="left">
+            <a href="board/read.html"
+               th:href="@{|read?boardNo=${board.boardNo}|}"
+               th:text="${board.title}">
+                ${board.title}
+            </a>
+        </td>
+        <td align="right" th:text="${board.writer}">
+            ${board.writer}
+        </td>
+        <td align="center"
+            th:text="${#dates.format(board.regDate, 'yyyy-MM-dd HH:mm:ss')}">
+            ${board.regDate}
+        </td>
+    </tr>
+</table>
+</body>
+</html>

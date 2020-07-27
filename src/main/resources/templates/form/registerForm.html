@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>registerForm</h1>
+
+<form th:action="@{/regtest}" method="post">
+     userId:  <input type="text"
+                     name="userId"
+                     value="jumi">
+     passwd: <input type="password"
+                    name="passwd"
+                    value="1234">
+     <input type="submit" value="register test">
+</form><!--물음표 뒤부터 데이터, 앤퍼센트는 변수 간 구분자-->
+<a th:href="@{/getRegTest?userId=jumi&date=2020/07/24}">Get Test</a>
+</body>
+</html>

@@ -1,0 +1,9 @@
+package com.example.lecture.nativeinterface.test;
+
+public class HelloSpring {
+    public native String print();
+
+    static {
+        System.loadLibrary("hello");
+    }
+}
