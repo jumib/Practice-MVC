@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>log</title>
+</head>
+<h3>log in page</h3>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var formObj = $("#members");
+
+        $("#btnAccess").on("click", function() {
+        formObj.attr("action", "postaccess");
+        formObj.attr("method", "post");
+        formObj.submit();
+        });
+    });
+</script>
+<form id="members" action="members/complete.html" th:action="@{signup}"
+      th:object="${members}" method="post">
+    <table>
+        <tr>
+            <td>userId</td>
+            <td><input type="text" name="id"
+                       th:field="*{id}"></td>
+        </tr>
+        <tr>
+            <td>userPw</td>
+            <td><input type="text" name="pw"
+                       th:field="*{pw}"></td>
+        </tr>
+    </table>
+</form>
+</body>
+<br>
+<div>
+    <button type="submit" id="btnAccess">sign in</button>
+</div>
+<br>
+<a href="members/signup.html" th:href="@{getsignup}">
+    아직 회원가입을 안하셨다구요?
+</a>
+</html>

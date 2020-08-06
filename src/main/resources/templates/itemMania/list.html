@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>itemMania list</title>
+</head>
+<body>
+<h2>아이템매니아 거래 리스트</h2>
+
+<a href="itemMania/register.html" th:href="@{getRegisters}">
+    게시글 작성하기
+</a><br><br>
+<a href="member/join.html" th:href="@{getjoin}">
+    회원가입을 해보세요!
+</a>
+<br>
+<table border="1">
+    <tr>
+        <th align="center" width="80">No</th>
+        <th align="center" width="80">Id</th>
+        <th align="center" width="80">Pw</th>
+        <th align="center" width="80">Nickname</th>
+        <th align="center" width="80">Item</th>
+        <th align="center" width="80">Price</th>
+    </tr>
+    <tr th:if="${#lists.isEmpty(list)}">
+        <td colspan="6">
+            List is Empty
+    </tr>
+    <tr th:each="itemMania: ${list}">
+        <td align="center" th:text="${itemMania.boardNum}">
+            ${itemMania.boardNum}
+        </td>
+        <td align="center" th:text="${itemMania.id}">
+            ${itemMania.id}
+        </td>
+        <td align="center" th:text="${itemMania.pw}">
+            ${itemMania.pw}
+        </td>
+        <td align="center" th:text="${itemMania.nickname}">
+            ${itemMania.nickname}
+        </td>
+        <td align="center">
+            <a href="itemMania/read.html" th:href="@{|reads?num=${itemMania.boardNum}|}"
+               th:text="${itemMania.item}">
+                ${itemMania.item}
+            </a>
+        </td>
+        <td align="center" th:text="${itemMania.price}">
+            ${itemMania.price}
+        </td>
+    </tr>
+</table>
+</body>
+</html>

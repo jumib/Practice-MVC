@@ -1,0 +1,5 @@
+export const successGenRandNum = 'successGenRandNum'
+export const failGenRandNum = 'failGenRandNum'
+export const ADD_TODO = 'ADD_TODO'
+export const REMOVE_TODO = 'REMOVE_TODO'
+export const CLEAR_ALL = 'CLEAR_ALL'

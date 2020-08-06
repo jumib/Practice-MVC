@@ -23,9 +23,8 @@
 </script>
 <body>
     <h2>Modify</h2>
-
     <form id="board" action="board/success.html"
-          th:action="@{modify}"
+          th:action="@{modify}" <!--액션은 그냥 관습적으로 넣어주기-->
           th:object="${board}" method="post">
         <input type="hidden" name="boardNo" th:field="*{boardNo}">
         <table>

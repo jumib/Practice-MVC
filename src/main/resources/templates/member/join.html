@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Join</title>
+</head>
+<body>
+<h2>회원가입</h2>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var formObj = $("#itemMania");
+
+        $("#btnComplete").on("click", function() {
+        formObj.attr("action", "postjoin");
+        formObj.attr("method", "post");
+        formObj.submit();
+        });
+
+        $("#btnBack").on("click", function() {
+            self.location = "/lists";
+        });
+    });
+</script>
+<form id="itemMania" action="member/success.html" th:action="@{join}"
+      th:object="${member}" method="post">
+    <table>
+        <tr>
+            <td>아 이 디</td>
+            <td><input type="text" name="userId"
+                       th:field="*{userId}"></td>
+            <td><font color="red">
+            <span th:if="${#fields.hasErrors('userId')}"
+                  th:error="*{userId}">
+            userId Error Message
+        </span>
+            </font></td>
+        </tr>
+        <tr>
+            <td>비밀번호</td>
+            <td><input type="text" name="userPw"
+                       th:field="*{userPw}"></td>
+            <td><font color="red">
+            <span th:if="${#fields.hasErrors('userPw')}"
+                  th:error="*{userPw}">
+            userPw Error Message
+        </span>
+            </font></td>
+        </tr>
+        <tr>
+            <td>이&nbsp;&nbsp;&nbsp;&nbsp;름</td>
+            <td><input type="text" name="userName"
+                       th:field="*{userName}"></td>
+            <td><font color="red">
+            <span th:if="${#fields.hasErrors('userName')}"
+                  th:error="*{userName}">
+            userName Error Message
+        </span>
+            </font></td>
+        </tr>
+        <tr>
+            <td>생년월일</td>
+            <td><input type="text" name="userBirth"
+                       th:field="*{userBirth}"></td>
+            <td><font color="red">
+            <span th:if="${#fields.hasErrors('userBirth')}"
+                  th:error="*{userBirth}">
+            userBirth Error Message
+        </span>
+            </font></td>
+        </tr>
+    </table>
+</form>
+</body>
+<br>
+<div>
+    <button type="submit" id="btnComplete">가입완료</button>&nbsp;&nbsp;
+    <button type="submit" id="btnBack">뒤로가기</button>
+</div>
+</html>

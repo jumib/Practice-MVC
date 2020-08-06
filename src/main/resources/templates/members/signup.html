@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>sign up</title>
+</head>
+<body>
+<h2>Sign Up Page</h2>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var formObj = $("#members");
+
+        $("#btnComplete").on("click", function() {
+        formObj.attr("action", "postsignup");
+        formObj.attr("method", "post");
+        formObj.submit();
+        });
+
+        $("#btnCheck").on("click", function() {
+        formObj.attr("action", "postcheck");
+        formObj.attr("method", "post");
+        formObj.submit();
+        });
+
+        $("#btnBack").on("click", function() {
+            self.location = "/log";
+        });
+    });
+</script>
+<form id="members" action="members/comlete.html" th:action="@{signup}"
+      th:object="${members}" method="post">
+    <table>
+        <tr>
+            <td>id</td>
+            <td><input type="text" name="id"
+                       th:field="*{id}">
+        <button type="submit" id="btnCheck">id check</button>
+            </td>
+        </tr>
+        <tr>
+            <td>pw</td>
+            <td><input type="text" name="pw"
+                       th:field="*{pw}"></td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td><input type="text" name="name"
+                       th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>day of birth</td>
+            <td><input type="text" name="dob"
+                       th:field="*{dob}"></td>
+        </tr>
+        <tr>
+            <td>contact address</td>
+            <td><input type="text" name="contact"
+                       th:field="*{contact}"></td>
+        </tr>
+    </table>
+</form>
+</body>
+<br>
+<div>
+    <button type="submit" id="btnComplete">complete !</button>&nbsp;&nbsp;
+    <button type="submit" id="btnBack">go back</button>
+</div>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Read</title>
+</head>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+     var formObj = $("#item");
+
+     console.log(formObj);
+
+     $("#btnModify").on("click", function() {
+        var boardNum = $("#boardNum");
+        var boardNumVal = boardNum.val();
+
+        self.location = "getmodifies?boardNum=" + boardNumVal;
+     });
+
+     $("#btnRemove").on("click", function() {
+         formObj.attr("action", "removes");
+         formObj.submit();
+
+     });
+
+    $("#btnList").on("click", function() {
+            self.location = "lists";
+        });
+    });
+</script>
+<body>
+<form id="item" th:object="${itemMania}" method="POST">
+<table>
+    <tr>
+        <td>No</td>
+        <td><input type="text" name="BoardNum"
+                   th:field="*{boardNum}"
+                   readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td>Id</td>
+        <td><input type="text" name="Id"
+                   th:field="*{id}"
+                   readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td>Pw</td>
+        <td><input type="text" name="Pw"
+                   th:field="*{pw}"
+                   readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td>Nickname</td>
+        <td><input type="text" name="Nickname"
+                   th:field="*{nickname}"
+                   readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td>Item</td>
+        <td><input type="text" name="Item"
+                   th:field="*{item}"
+                   readonly="readonly"></td>
+    </tr>
+    <tr>
+        <td>Price</td>
+        <td><input type="text" name="Price"
+                   th:field="*{price}"
+                   readonly="readonly"></td>
+    </tr>
+</table>
+</form>
+<div>
+    <button type="submit" id="btnModify">Modify</button>
+    <button type="submit" id="btnRemove">Remove</button>
+    <button type="submit" id="btnList">List</button>
+</div>
+</body>
+</html>

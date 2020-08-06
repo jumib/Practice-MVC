@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-//DB 처리에 대한 어노테이션 (component)
+//DB 처리에 대한 어노테이션 (component), 디비 컨트롤
 @Repository
 // BoardDataAccessObject(BoardDAO)
 public class BoardRepository {
@@ -90,11 +90,13 @@ public class BoardRepository {
     }
 
     public void remove(Integer boardNo) throws Exception{
+        //DB 테이블 안에 있는 내용을 지울때는 delete를 사용한다.
         String query = "delete from board where board_no = ?";
         jdbcTemplate.update(query, boardNo); //위에 물음표로 보드넘버 넣는것
     }
 
     public void modify(Board board) throws Exception{
+        //DB 테이블의내용을 갱신하는데 사용한다.
         String query= "update board set title = ? ,content = ?" + " where board_no = ?";
         jdbcTemplate.update(
                 query, board.getTitle(), board.getContent(), board.getBoardNo()

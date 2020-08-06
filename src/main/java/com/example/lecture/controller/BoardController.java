@@ -20,8 +20,6 @@ public class BoardController {
 
     @GetMapping("/getRegister")
     public String getRegister(Board board, Model model) {
-        log.info("getRegister()");
-
         return "board/register";
     }
 
