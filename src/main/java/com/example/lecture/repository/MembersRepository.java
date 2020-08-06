@@ -58,11 +58,45 @@ public class MembersRepository {
 
                         members.setId(rs.getString("id"));
 
-
                         return members;
                     }
                 }
                 , members.getId());
         return results.isEmpty() ? true : false;
+    }
+
+    public String idsearch(Members members) throws Exception {
+        log.info("Repository idsearch()");
+
+        String query = "select id from members where name=? and contact=?";
+        List<Members> results = jdbcTemplate.query(query, new RowMapper<Members>(){
+                    @Override
+                    public Members mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        Members members = new Members();
+                        members.setId(rs.getString("id"));
+
+                        return members;
+                    }
+                }
+                , members.getName(), members.getContact());
+        return results.isEmpty() ? "" : results.get(0).getId();
+    }
+
+    public String pwsearch(Members members) throws Exception {
+        log.info("Repository pwsearch()");
+
+        String query = "select pw from members where id=? and name=? and contact=?";
+        List<Members> results = jdbcTemplate.query(query, new RowMapper<Members>() {
+            @Override
+            public Members mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Members members = new Members();
+                members.setPw(rs.getString("pw"));
+
+                return members;
+            }
+         }
+         , members.getId(), members.getName(), members.getContact());
+
+        return results.isEmpty() ? "" : results.get(0).getPw();
     }
 }

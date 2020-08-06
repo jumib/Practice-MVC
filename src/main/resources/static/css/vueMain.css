@@ -1,4 +1,4 @@
-.v-enter-active, .v-leave-active {
+ .v-enter-active, .v-leave-active {
     transition: opacity 2s;
 }
 

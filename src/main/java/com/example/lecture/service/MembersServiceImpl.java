@@ -27,4 +27,14 @@ public class MembersServiceImpl implements MembersService {
     public boolean idcheck(Members members) throws Exception {
         return membersRepository.idcheck(members);
     }
+
+    @Override
+    public String idsearch(Members members) throws Exception {
+        return membersRepository.idsearch(members);
+    }
+
+    @Override
+    public String pwsearch(Members members) throws Exception {
+        return membersRepository.pwsearch(members);
+    }
 }

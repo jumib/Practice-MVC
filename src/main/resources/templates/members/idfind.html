@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<h3 th:text="|your id is ... ${id} |"></h3>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var formObj = $("#members");
+
+        $("#btnBack").on("click", function() {
+            self.location = "/log";
+        });
+    });
+</script>
+<body>
+
+</body>
+<div>
+    <button type="submit" id="btnBack">go back</button>
+</div>
+</html>

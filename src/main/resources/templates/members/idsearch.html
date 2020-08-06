@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>id</title>
+</head>
+<h2>Find id</h2>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var formObj = $("#members");
+
+        $("#btnFind").on("click", function() {
+        formObj.attr("action", "postidsearch");
+        formObj.attr("method", "post");
+        formObj.submit();
+        });
+
+    });
+</script>
+<body>
+<form id="members" action="members/idfind.html" th:action="@{postidsearch}"
+      th:object="${members}" method="post">
+    <table>
+        <tr>
+            <td>User name</td>
+            <td><input type="text" name="name"
+                       th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>contact address</td>
+            <td><input type="text" name="contact"
+                       th:field="*{contact}"></td>
+        </tr>
+    </table>
+</form>
+</body>
+<br>
+<div>
+    <button type="submit" id="btnFind">...search...</button>
+</div>
+</html>

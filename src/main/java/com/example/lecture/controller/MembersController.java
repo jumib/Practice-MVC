@@ -1,7 +1,7 @@
 package com.example.lecture.controller;
 
+import com.example.lecture.entity.Member;
 import com.example.lecture.entity.Members;
-import com.example.lecture.repository.MembersRepository;
 import com.example.lecture.service.MembersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +64,47 @@ public class MembersController {
             return "members/possible";
         } else {
             return "members/impossible";
+        }
+    }
+
+    @GetMapping("/getidsearch")
+    public String getidsearch(Members members) throws Exception{
+        log.info("getidsearch()");
+
+        return "members/idsearch";
+    }
+
+    @PostMapping("/postidsearch")
+    public String postidsearch(Members members, Model model) throws Exception{
+        log.info("postidsearch()");
+
+        String results = service.idsearch(members);
+        if(results.isEmpty()){
+            return "members/impossible";
+        } else {
+            model.addAttribute("id", results);
+            return "members/idfind";
+        }
+    }
+
+    @GetMapping("/getpwsearch")
+    public String getpwsearch(Members members) throws Exception{
+        log.info("getpwsearch()");
+
+        return "members/pwsearch";
+    }
+
+    @PostMapping("/postpwsearch")
+    private String postpwsearch(Members members, Model model) throws Exception{
+        log.info("postpwsearch()");
+
+        String results = service.pwsearch(members);
+        if (results.isEmpty()){
+            return "members/impossible";
+        } else {
+            model.addAttribute("pw", results);
+
+            return "members/pwfind";
         }
     }
 }

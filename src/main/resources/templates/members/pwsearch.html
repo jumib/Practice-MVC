@@ -2,55 +2,47 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>log</title>
+    <title>Title</title>
 </head>
-<h2>log in page</h2>
+<h2>Find pw</h2>
 <script type="text/javascript"
         src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
     $(document).ready(function(){
         var formObj = $("#members");
 
-        $("#btnAccess").on("click", function() {
-        formObj.attr("action", "postaccess");
+        $("#btnFind").on("click", function() {
+        formObj.attr("action", "postpwsearch");
         formObj.attr("method", "post");
         formObj.submit();
         });
 
-
     });
 </script>
-<form id="members" action="members/complete.html" th:action="@{signup}"
+<body>
+<form id="members" action="members/pwfind.html" th:action="@{postpwsearch}"
       th:object="${members}" method="post">
     <table>
         <tr>
-            <td>userId</td>
+            <td>User id</td>
             <td><input type="text" name="id"
                        th:field="*{id}"></td>
         </tr>
         <tr>
-            <td>userPw</td>
-            <td><input type="text" name="pw"
-                       th:field="*{pw}"></td>
+            <td>User name</td>
+            <td><input type="text" name="name"
+                       th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>contact address</td>
+            <td><input type="text" name="contact"
+                       th:field="*{contact}"></td>
         </tr>
     </table>
 </form>
 </body>
 <br>
 <div>
-    <button type="submit" id="btnAccess">sign in</button>
+    <button type="submit" id="btnFind">...search...</button>
 </div>
-<br>
-<a>Forgot your</a>
-<a th:href="@{getidsearch}">
-    Userid
-</a>
-<a>or</a>
-<a th:href="@{getpwsearch}">
-    Password?
-</a>
-<a>&nbsp;</a>
-<a href="members/signup.html" th:href="@{getsignup}">
-    Sign up
-</a>
 </html>
