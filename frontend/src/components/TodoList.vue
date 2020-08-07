@@ -1,41 +1,63 @@
 <template>
   <div>
-    <h3>Todo List</h3>
     <ul>
-          <li v-for="(todoItem, idx) in todoItems"
-              v-bind:key="idx">
-            {{ todoItem }}
-            <button v-on:click="removeTodo(todoItem, idx)">
-            Delete
-            </button>
-          </li>
-        </ul>
+      <h3>Todo List</h3>
+      <todo-item v-for="todoItem in todoItems"
+        v-bind:key="todoItem.id"
+        v-bind:todoItem="todoItem"
+        v-bind:editingId="editingId"
+        v-on:removeTodo="onRemoveTodo"
+        v-on:updateTodo="onUpdateTodo"
+        v-on:setEditingId="SET_EDITING_ID"
+        v-on:resetEditingId="RESET_EDITING_ID"
+        v-on:toggleTodoStatus="onToggleTodoStatus"/>
+    </ul>
   </div>
 </template>
 
 <script>
-
+import TodoItem from './TodoItem.vue'
+import { mapState, mapMutations, mapGetters } from 'vuex'
+import { RESET_EDITING_ID, SET_EDITING_ID } from '../store/mutation-types'
 export default {
-  data () {
-    return {
-      // todoItems: ['item1', 'item2', 'item3']
-    }
+  components: {
+    'todo-item': TodoItem
   },
-  props: ['todoItems'],
+  computed: {
+    todoItems () {
+      return this.filteredTodoItems
+    },
+    ...mapState([
+      'editingId'
+    ]),
+    ...mapGetters([
+      'filteredTodoItems'
+    ])
+  },
   methods: {
-    removeTodo (todoItem, idx) {
-      console.log('removeTodo')
-      // this.todoItems.splice(idx, 1)
-      // splice는 배열에서 값을 추출하는 것
-      this.$emit('removeTodo', todoItem, idx)
+    ...mapMutations([
+      SET_EDITING_ID,
+      RESET_EDITING_ID
+    ]),
+    onRemoveTodo (id) {
+      this.$emit('removeTodo', id)
+    },
+    onUpdateTodo (content, id) {
+      this.$emit('updateTodo', content, id)
+    },
+    onToggleTodoStatus (id) {
+      this.$emit('toggleTodoStatus', id)
     }
   }
 }
-
 </script>
 
 <style scoped>
   div {
-    background-color: #383687
+    background-color: #44cc34
+  }
+  .monospace {
+    font-family: "Lucida Console", Courier, monospace;
+    text-decoration: underline;
   }
 </style>
